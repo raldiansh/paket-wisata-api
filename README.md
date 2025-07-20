@@ -1,11 +1,52 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+### paket-wisata-api
+API Laravel untuk layanan pemesanan dan pembayaran paket wisata. Mendukung autentikasi JWT, pemesanan paket oleh user, dan pengelolaan data oleh admin.
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+### Instalasi
+- git clone https://github.com/namauser/paket-wisata-api.git
+- cd paket-wisata-api
+- composer install
+- cp .env.example .env
+- php artisan key:generate
+- php artisan migrate
+- php artisan db:seed
+- php artisan serve
+
+### Autentikasi
+- Menggunakan JWT (via tymon/jwt-auth)
+- composer require tymon/jwt-auth
+- php artisan vendor:publish --provider="Tymon\JWTAuth\Providers\LaravelServiceProvider"
+- php artisan jwt:secret
+
+### Endpoint Utama
+- Auth
+- Method	Endpoint	Keterangan
+- POST	/api/register	Register user
+- POST	/api/login	Login user
+- GET	/api/profile	Lihat profil
+
+### Paket Wisata
+- Method	Endpoint	Keterangan
+- GET	/api/paket	Lihat semua paket
+- POST	/api/paket	Tambah paket (admin)
+- PUT	/api/paket/{id}	Ubah paket (admin)
+- DELETE	/api/paket/{id}	Hapus paket (admin)
+
+### Pemesanan
+- Method	Endpoint	Keterangan
+- GET	/api/pemesanan	Lihat semua pemesanan
+- POST	/api/pemesanan	Buat pemesanan
+
+### Pembayaran
+- Method	Endpoint	Keterangan
+- POST	/api/pembayaran	Upload bukti pembayaran
+- PUT	/api/pembayaran/{id}/status	Ubah status pembayaran (admin)
+
+### Testing via Postman
+Gunakan Bearer Token dari endpoint login untuk mengakses endpoint yang dilindungi.
+
+### Role
+- user: hanya bisa memesan dan melihat paket
+- admin: bisa mengelola semua data (paket, pesanan, pembayaran)
 
 ## About Laravel
 
